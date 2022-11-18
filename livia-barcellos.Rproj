@@ -14,7 +14,7 @@ LaTeX: pdfLaTeX
 
 QuitChildProcessesOnExit: Yes
 
-R version 4.2.1 (2022-06-23) -- "Funny-Looking Kid"
+R version 3.3.3 (2017-03-06) -- "Another Canoe"
 Copyright (C) 2022 The R Foundation for Statistical Computing
 Platform: x86_64-apple-darwin17.0 (64-bit)
 
