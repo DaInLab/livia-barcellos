@@ -1,0 +1,61 @@
+Last login: Wed Nov 23 22:54:46 on ttys000
+liviaibarcellos@MacBook-Pro ~ % gh auth login 
+? What account do you want to log into? GitHub.com
+? What is your preferred protocol for Git operations? HTTPS
+? Authenticate Git with your GitHub credentials? Yes
+? How would you like to authenticate GitHub CLI? Paste an authentication token
+Tip: you can generate a Personal Access Token here https://github.com/settings/tokens
+The minimum required scopes are 'repo', 'read:org', 'workflow'.
+? Paste your authentication token: ****************************************
+- gh config set -h github.com git_protocol https
+✓ Configured git protocol
+✓ Logged in as liviaibarcellos
+liviaibarcellos@MacBook-Pro ~ % gh pr status
+
+Relevant pull requests in DaInLab/liviaibarcellos
+
+Current branch
+  There is no pull request associated with [main]
+
+Created by you
+  You have no open pull requests
+
+Requesting a code review from you
+  You have no pull requests to review
+
+liviaibarcellos@MacBook-Pro ~ % gh pr checks
+no pull requests found for branch "main"
+liviaibarcellos@MacBook-Pro ~ % main
+zsh: command not found: main
+liviaibarcellos@MacBook-Pro ~ % gh pr create
+Warning: 39 uncommitted changes
+? Where should we push the 'main' branch? DaInLab/liviaibarcellos
+must be on a branch named differently than "main"
+liviaibarcellos@MacBook-Pro ~ % gh pr checks
+no pull requests found for branch "main"
+liviaibarcellos@MacBook-Pro ~ % gh repo view
+DaInLab/liviaibarcellos
+Repositório para resolução de exercícios da disciplina Ciência de Dados 2022.
+
+
+   liviaibarcellos                                                                                
+                                                                                                  
+  Repositório para resolução de exercícios da disciplina Ciência de Dados 2022.                   
+
+
+
+View this repository on GitHub: https://github.com/DaInLab/liviaibarcellos
+liviaibarcellos@MacBook-Pro ~ % gh auth login
+? What account do you want to log into? GitHub.com
+? You're already logged into github.com. Do you want to re-authenticate? Yes
+? What is your preferred protocol for Git operations? HTTPS
+? Authenticate Git with your GitHub credentials? Yes
+? How would you like to authenticate GitHub CLI? Login with a web browser
+
+! First copy your one-time code: 2946-BF39
+Press Enter to open github.com in your browser... 
+✓ Authentication complete.
+- gh config set -h github.com git_protocol https
+✓ Configured git protocol
+✓ Logged in as liviaibarcellos
+liviaibarcellos@MacBook-Pro ~ % 
