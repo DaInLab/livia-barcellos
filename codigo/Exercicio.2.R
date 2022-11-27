@@ -64,12 +64,12 @@ print(paste("Variância:", variancia))
 #[1] "Variância: 680.0037""
 
 #Desvio padrão
-desviopadrao = round(sd(df.ex2$casas),4)
+desviopadrao = round(sd(v.exercicio2$casas),4)
 print (paste("Desvio Padrão:", desviopadrao)) 
 #[1]"Desvio Padrão: 26.0768"
 
 #Coeficiente de variação
-cv = round(100*desviopadrao/exercicio2.media,4)
+cv = round(100*desviopadrao/media,4)
 print(paste("Coeficiente de Variação:",cv))
 #"Coeficiente de Variação:64.5148"
 
@@ -96,10 +96,11 @@ abline(a = quartiz[3], b = 0L, h = NULL, v = T)
 plot(exercicio2$casas, main = "Casas",
      xlab = "Casas",
      ylab = "Número de Casas")
-barplot(table(df.ex1$tx.juros))
+barplot(table(exercicio2$casas))
 
-plot(df.ex1$tx.juros)
-hist(df.ex1$tx.juros)
-lines(df.ex1$tx.juros)
+plot(exercicio2$casas)
+hist(exercicio2$casas)
+lines(exercicio2$casas)
 
-stripchart(df.ex1$tx.juros, vertical = T)
+stripchart(exercicio2$casas, vertical = T)
+
