@@ -19,3 +19,12 @@ library(qcc)
 Par_causas_ex6 <- (exercicio6$N.pessoas)
 names(Par_causas_ex6) <- exercicio6$Qualidade 
 G_Par_Causas_ex6 <- pareto.chart(Par_causas_ex6)
+
+#Informações para a construção do gráfico de Pareto
+G_Par_Causas_ex6 
+
+#gráfico de pareto em função das causas secundárias
+Par_Causas_Sec.ex6 <- (exercicio6$N.pessoas)
+names(Par_Causas_Sec.ex6) <- exercicio6$Qualidade
+
+G_Par_Causas_Sec <- pareto.chart(Par_Causas_Sec.ex6)

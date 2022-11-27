@@ -16,3 +16,4 @@ exercicio5[[1]] <- data.frame(exercicio5)
 data.frame(exercicio5)
 v.exercicio5 <- c(data.frame(exercicio5)$pessoas)
 barplot(v.exercicio5)
+
