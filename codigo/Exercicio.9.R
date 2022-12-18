@@ -8,7 +8,7 @@ View(exercicio9)
 
 # Importando o arquivo do exercício 9
 df.exercicio9 <- read_excel("./dados/exercicio9.xls",skip = 1, col_names = "Salários", col_types = c("numeric"))
-#view(df.exercicio9)
+view (df.exercicio9)
 
 
 # distribuição de frequência
@@ -36,7 +36,8 @@ tabfreq
 
 
 # criando e imprimindo gráfico de histograma 
-exercicio9.table <-table(v.exercicio9) 
+exercicio9.table <-table(exercicio9) 
+View(exercicio9.table)
 #deu erro
 
 
