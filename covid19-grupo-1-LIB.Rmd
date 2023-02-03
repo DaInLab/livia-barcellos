@@ -1,0 +1,1088 @@
+---
+title: "Impacto da COVID-19 nos Estudantes Universitários no Brasil"
+subtitle: 'Trabalho Final da Disciplina Ciência de Dados - 2022'
+author:
+- name: Lívia Inglesis Barcellos^[Universidade Estadual Paulista - UNESP/Bauru, livia.i.barcellos@unesp.br]
+- name: Marcelo José dos Santos^[Universidade Estadual Paulista - UNESP/Bauru, marcelo.j.santos@unesp.br]
+- name: Henrique Campos Mercez dos Santos^[Universidade Estadual Paulista - UNESP/Bauru, henrique.mercez@unesp.br]
+- name: Shelley Navari Christianini^[Universidade Estadual Paulista - UNESP/Bauru, shelley.navari@unesp.br]
+date: "`r format(Sys.time(), '%d de %B de %Y')`"
+tags: [ciênciadedados, covid19, analiseexploratoria, trabalhofinal]
+abstract: |
+  Tendo em vista os fatores causados pela situação pandêmica mundial da COVID-19, a proposta desta pesquisa é a de lançar alguma luz neste âmbito e coletar dados exploratórios. O estudo proposto visa compreender como os estudantes universitários estão vivenciando a pandemia e de que forma se comportam frente a esta nova realidade.  
+  Portanto, os objetivos dessa pesquisa exploratória-descritiva são de investigar: a) como os alunos vivenciaram a pandemia da COVID-19; b) de que forma se comportaram frente as restrições impostas pelos riscos de contágio; c) quais suas considerações a respeito das estratégias que foram adotadas pelas instituições superiores; e d) como estes fatores influenciaram suas vidas. 
+output:
+  word_document: default
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float:
+      collapsed: false
+      smooth scroll: false
+  pdf_document: 
+    latex_engine: xelatex
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "/Users/liviaibarcellos/Documents/liviaibarcellos/liviaibarcellos")
+```
+
+## 1. Introdução
+
+Em março de 2020, a Organização Mundial das Nações Unidas (ONU) declarou
+oficialmente a pandemia da Covid-19 (UNA-SUS, 2020), doença infecciosa
+causada pelo vírus SARS-CoV-2, detectado pela primeira vez em dezembro
+de 2019, na China. No Brasil, foi dada a confirmação do primeiro caso em
+fevereiro de 2020, tendo o número de infectados e óbitos se multiplicado
+rapidamente posteriormente.
+
+Medidas de prevenção foram implementadas em todas as regiões do país
+para coibir a disseminação do vírus, tendo em vista a necessidade de
+preparar as unidades de pronto atendimento (UPA) e hospitais para
+receberem pacientes em larga escala em um curto período de tempo, uma
+vez que a contaminação entre os seres humanos é considerada alta.
+
+No Brasil, a primeira vacina a ser utilizada foi a CoronaVac,
+desenvolvida pelo Instituto Butantã em parceria com a fabricante chinesa
+de medicamentos Sinovac Biontech. A vacinação da população deu-se início
+em janeiro de 2021. Desde então, 80,3% da população já completou o
+calendário vacinal (UOL, 2023) com todas as doses recomendadas, porém,
+órgãos de saúde pública e privada ainda trabalham para que a cobertura
+vacinal seja ainda maior, tendo em vista que a vacina deve ser
+reforçada, em média, a cada 4 meses.
+
+Seu impacto global afetou diversos setores como saúde, política,
+economia e educação. Considerando-se os fatores causados pela COVID-19,
+a proposta desta pesquisa exploratória-descritiva é compreender como os
+estudantes universitários vivenciam a pandemia. Buscou-se investigar
+também de que forma se comportam frente às restrições impostas pelos
+riscos de contágio, quais suas considerações a respeito das estratégias
+que foram adotadas pelas instituições superiores, e como estes fatores
+influenciaram suas vidas.
+
+## 2. Fundamentação Teórica
+
+A COVID-19 é uma síndrome respiratória aguda grave (SRAG) infecciosa
+causada pelo coronavírus, cujo agente etiológico é o SARS-CoV-2. Sua
+particularidade está na rapidez com que se manifesta entre seres
+humanos, levando a alta contaminação e elevação do número de casos
+(Campos, Mônica Rodrigues et al. 2020).. Inicialmente, os sintomas mais
+comuns eram febre, tosse seca, perda dos sentidos, olfato e paladar, e,
+em casos mais moderados/graves, falta de ar. Contudo, a doença apresenta
+manifestações diferentes a depender do indivíduo. Desde então, variadas
+mutações surgiram em diferentes partes do mundo, algumas, inclusive,
+associadas a uma maior transmissibilidade e virulência.
+
+> Por isso, medidas de proteção como usar máscaras e higienizar as mãos
+> com sabão e álcool em gel, evitar aglomerações e manter o
+> distanciamento social, além de completar o esquema vacinal contra a
+> Covid-19, são iniciativas que funcionam contra todas variantes da
+> Covid-19. (BUTANTAN, 2021).
+
+Além disso, as medidas preventivas incluíram, inicialmente, o isolamento
+social, quando as autoridades recomendaram que a população permanecesse
+em casa, evitando assim aglomerações e, consequentemente, a transmissão
+do vírus. Nesse período, os estados e municípios adotaram diferentes
+medidas de isolamento social, com diferentes níveis de restrição dado o
+número de infectados.
+
+No auge da pandemia, antes da criação de uma vacina, foi aplicado o
+Lockdown (ou quarentena rígida) em determinadas localidades por um
+determinado período de tempo, restringindo a circulação de pessoas e o
+fechamento de comércios e serviços considerados não essenciais. Por
+último, seguiu-se a vacinação, com uma campanha conduzida de forma
+descentralizada, com cada Estado e município sendo responsáveis por
+adquirir e distribuir as vacinas (VEJA, 2022). Além de tais medidas,
+também puderam adotar outras adicionais de acordo com a situação local,
+como fechamento de escolas, restrições de circulação noturna, entre
+outras.
+
+As principais críticas às decisões tomadas pelos governos, tanto na
+esfera federal, estadual ou municipal do Brasil, se dão pela falta de
+planejamento. O país sofreu com a ausência de um plano efetivo na
+coordenação e distribuição de vacinas, tendo dificuldades principalmente
+quanto à distribuição, com desequilíbrios regionais e problemas de
+logística. A falta de apoio econômico e social para as pessoas afetadas
+pela pandemia também foi um fator de grande impacto (CEPAL, 2021), pois
+muitos foram afetados economicamente pela pandemia e pela necessidade de
+isolamento social.
+
+A falta de transparência e de informações precisas sobre a pandemia,
+fosse pela real situação e as medidas governamentais adotadas tem sido
+criticada, assim como a falta de informações consistentes e atualizadas.
+E uma das principais causas na demora da compra de vacinas, e
+impedimento de imunização no país, é a política de negacionismo, onde
+governadores e líderes políticos minimizaram a gravidade da pandemia (O
+Globo, 2021) e se recusaram a adotar medidas recomendadas pelas
+autoridades de saúde mundiais, fator extremamente criticado por
+especialistas (FIOCRUZ,2021), pois pode levou a uma disseminação
+descontrolada do vírus e uma sobrecarga nos sistemas de saúde.
+
+## 3. Metodologia
+
+Para a metodologia foi levado em consideração que se fez necessário uma
+abordagem quali-quantitativa, por envolver aspectos opinativos e
+informações a fim de identificar as principais dificuldades enfrentadas.
+Tal abordagem foi escolhida dada a coleta de dados, e com a corroboração
+de outras fontes de informação para a análise, a fim de enriquecer a
+pesquisa realizada.
+
+> Toda a ciência é qualitativa, no sentido que pretende estabelecer uma
+> qualidade a um objeto de estudo ao reproduzi-lo ou reconstruí-lo, ao
+> explicá-lo ou compreendê-lo. A quantidade em si mesma nada representa
+> se não se relaciona com determinada qualidade; as cifras e os dados
+> não falam sozinhos, requerem uma interpretação que alude a uma teoria,
+> à afirmação ou à negação de uma idéia. (...) técnicas quantitativas de
+> levantamentos (surveys) que serão processados estatisticamente ou com
+> histórias de vida que serão analisadas qualitativamente.
+> (Briceño-Léon,2003)
+
+Na intenção de identificar as principais dificuldades pelas instituições
+de ensino superior, foram adotados como instrumento de coleta de dados o
+uso de um questionários online cadastrados no Google Formulários.
+
+Este relatório representa a análise sobre como a pandemia de Coronavírus
+(Covid-19) afetou a vida e cotidiano dos estudantes universitários. O
+questionário ficou disponível de 22 de abril de 2021 e 06 de dezembro de
+2022, contendo 50 questões. A pesquisa contou com a participação de 52
+integrantes, sendo que mais de 48% se declaram do gênero masculino, 46%
+feminino, 4% transgênero/transexual e 2% homem gay. A amostra foi
+composta ainda por 77% de alunos da UNESP e 23% de demais instituições.
+
+## 4. Análise Exploratória de Dados
+
+O processo denominado \*\*análise exploratória de dados\*\* (AED - em
+inglês EDA Exploratory Data Analysis) é utilizado por cientistas de
+dados para analisar e investigar um conjunto de dados (\*dataset\*) e
+resumir suas principais características, muitas vezes usando métodos de
+\*\*visualização de dados\*\*. A AED permite determinar a melhor forma
+de controlar as fontes de dados para obter as respostas necessárias,
+tornando mais fácil para os cientistas de dados descobrir padrões,
+detectar anomalias, testar uma hipótese ou verificar suposições (IBM,
+s/d.).
+
+A AED é usada principalmente para identificar o que os dados podem
+revelar além da tarefa formal de modelagem ou teste de hipótese e
+proporciona uma melhor compreensão das variáveis do conjunto de dados e
+as relações entre eles. Também pode determinar se as técnicas
+estatísticas utilizadas na análise são adequadas.
+
+Por tanto, neste trabalho, a análise de dados será definida, de forma
+genérica, como o processo de obtenção de valiosos \*\*insights\*\* a
+partir da análise e interpretação de um conjunto de dados.
+
+### 4.1 Preparação e compreensão do conteúdo de dados
+
+Em resumo, as etapas do processo da Figura 1 podem ser explicitadas como
+sendo compostas por:
+
+1.  \*\*Importar\*\* os dados de alguma fonte (Banco de dados, ou
+    planilha) para o ambiente e/ou ferramenta de AED;
+
+2.  \*\*"Arrumar"\*\* (no original, em inglês \*tidy\*) ou
+    \*\*organizar\*\*/\*\*pré-processar\*\* os dados no formato de
+    \*dataframe\* no ambiente AED limpando os dados faltantes (\*missing
+    data\*), campos digitados errados etc. Um \*dataframe\*, segundo
+    Wickham e Grolemund (2017), são objetos de dados genéricos no
+    ambiente de análise de dados usados para armazenar dados tabulares.
+    O \*dataframe\* pode ser visto como uma tabela em que cada linha
+    correspondente a um registo ou a uma observação e são compostos por
+    três componentes principais: \*dados\*, \*linhas\* e \*colunas\*.
+
+3.  \*\*Transformar\*\* os dados, de forma que possam ser aplicadas as
+    técnicas estatísticas. Em alguns casos, transformar os campos
+    categóricos alfanuméricos (por exemplo gênero, ou nivel_ensino) em
+    campos categóricos numéricos (exemplo: sexo feminino = 1, sexo
+    masculino = 2, não respondeu = 3 etc.). Nesta fase também são
+    desenvolvidos os códigos (programas) para a elaboração das análises.
+
+4.  \*\*Visualizar\*\*. Nesta etapa são gerados os gráficos e elaborado
+    o relatório da análise.
+
+5.  \*\*Modelar\*\*. Elaboração de modelos com os dados após a análise
+    exploratória dos dados. Um \*modelo estatístico\* é uma
+    representação da realidade na qual definimos a relação entre
+    variáveis para entender e prever o comportamento de um fenômeno.
+
+6.  \*\*Comunicar\*\*. Envio ou submissão do relatório final com as
+    análises realizadas e as conclusões obtidas.
+
+### 4.2 Importação dos dados
+
+Os dados originais estavam disponíveis em arquivos externos ao ambiente
+de análise de dados armazenados em planilhas de cálculo.
+
+Como em todo processo de AED, ouve a necessidade de normalização e
+padronização dos conteúdos para uso nas análises realizadas neste
+artigo.
+
+Como os dados utilizados nesta análise vieram de questionários aplicados
+em diferentes estapas da pandemia (entre 2020 e 2023) alguns processos
+de limpeza e preparação foram empregados com o objetivo de normalizar as
+informações destes diferentes períodos.
+
+Para a realização das etapas de preparação, transformação, organização e
+estruturação foram utilizados recursos da \*\*Linguagem R\*\*, um
+software livre de programação voltada ao tratamento, análise e
+visualização de dados. A linguagem é largamente utilizada por
+acadêmicos, estatísticos e analistas de dados para realizar projetos de
+AED.
+
+A linguagem foi desenvolvida originalmente no departamento de
+Estatística da Universidade de Auckland, Nova Zelândia e sua manutenção
+é realizada por uma comunidade de colaboradores voluntários que
+contribuem para melhoria e otimização da linguagem e com a expansão das
+suas funcionalidades básicas por meio de bibliotecas, ou
+\*\*packages\*\* residentes no repositório \*CRAN-R\* (The Comprehensive
+R Archive Network) (LINGUAGEM R, 2022)[\^4].
+
+Com o objetivo de facilitar e agilizar o processo de desenvolvimento dos
+cálculos estatísticos e geração de gráficos na linguagem R, utilizou-se
+também o \*\*Ambiente de Desenvolvimento Integrado\*\* (do inglês
+Integrated Development Environment -- IDE) \*RStudio\*, um programa de
+computador de fonte aberta com características e ferramentas de apoio ao
+desenvolvimento acelerado de software (LINGUAGEM R, 2022).
+
+Portanto, como tarefa inicial para a organização e estruturação dos
+dados, no Quadro 1 é possível visualizar o dicionário de dados com os
+nomes e as definições das variáveis utilizadas nesta AED.
+
+Quadro 1: Dicionário de dados.
+
+    | Nome da variável | Tipo de variável | Conteúdo                          | Descrição                                                   |
+    |:------------|:-----------:|:---------------------|:------------------------|
+    | data/ano                      |      data        | dd/mm/aaaa                        | Dia, mês e ano em que o questionário foi aplicado           |
+    | idade                         |      númerica    | Idade da(o) respondente           | Faixa etária dos respondentes 
+    | genero                        |      texto       | Feminino, Masculino, Outros ou NR | Gênero da(o) inquirida(o)                                         |
+    | situacao_conjugal             |      texto       | Solteiro, Casado, União Estável/Vivendo junto, Divorciado/Separado, Viúvo, NR  | Situação conjugal |
+    | situacao_empregaticia         |      texto       | Dependente, Bolsista, Estagiário, Empregado, Desempregado | Situação empregatícia e/ou financeira atual                                         |
+    | estado_reside                 |      texto       | SP, RJ, MG...                     | 27 estados da federação e DF                                        |
+    | ies                           |      texto       | Instituição de Ensino Superior    | Nome da IES da(o) estudante                                      |
+    | nome_curso                    |      texto       | Graduação ou pós-graduação.       | Nome do curso da(o) estudante                                          |
+    | nível_ensino                  |      texto       | Graduação ou pós-graduação.       | Nível do curso da(o) estudante                                          |
+    | data_inicio_ curso            |      data        | dd/mm/aaaa                        | Dia, mês e ano em que a(o) estudante inicou o curso na IES           |
+    | tipo_ies                      |      texto       | Privada, Pública, Outras          | Tipo da IES                                       |
+    | local_estudante               |      texto       | Local, Outra cidade, NR           | Local de origem do estudante                                       |
+    | migrou_virtual                |      texto       | Sim, Não, Não sei                 | Instituição migrou para as aulas virtuais                          |
+    | ies_fechou_dorm               |      texto       | Sim, Não, Não sei, Não se aplica  | Instituição fechou dormitórios                                     |
+    | situação_durante_pandemia     |      texto       | texto livre (até 250 palavras)    | Conjunto e diversidade da situação da pandemiana sua instituição                                   |
+    | data_fechamento               |      data        | dd/mm/aaaa                        | Dia, mês e ano em que a IES fechou           |
+    | residencia_atual              |      texto       | No campus universitário instituciona, Fora do campus, mas na mesma cidade da instituição de ensino, Em outra cidade da instituição de ensino mas dentro do mesmo estado, Em uma cidade em outro Estado, Em um pais diferente da instituição  | Onde o aluno está vivendo ou residindo atualmente           |
+    | moradia_atual_permanente      |      texto       | Sim, Não                          |  Moradia atual do aluno é uma residência permanente e estável|
+    | morando_com                   |      texto       | Colega de quarto/República, Família, Sozinho(a) |  Aluno morando ou residindo com/em |
+    | convive_risco_relevante       |      texto       | Sim, Não                          | Aluno morando ou convivendo atualmente com alguém na faixa etária  dos 60-70 anos, e/ou que tenha algum fator de risco relevante |
+    | quarentena_imposta            |      texto       | Sim, Não, Não sei                |  Aluno convive ou que está ou esteve em quarentena imposta pela COVID-19 |
+    | vivenciou                     |      texto       | Ajuda ou assistência de pessoas desconhecidas, Discriminação por pessoas desconhecidas, Dificuldades devido a alterações em suas condições de vida, incluindo o fechamento de alojamentos, perda de emprego etc., Dificuldades para viajar/se deslocar, Não se aplica / Não sabe / Não se lembra| Aluno vivenciou durante a pandemia |
+    | acesso_servicos_saude         |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes|  Como o aluno classifica o acesso aos serviços de saúde, comparado a antes e durante a pandemia |
+    | acesso_internet               |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes|  Como o aluno classifica o acesso aos serviços de internet, comparado a antes e durante a pandemia |
+    | capacidade_prosseguir_estudos |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes|  Como o aluno classifica sua capacidade em prosseguir seus estudos, incluindo sua graduação e/ou conclusão de curso |
+    | capacidade_socializacao       |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes|  Como o aluno classifica a sua capacidade de socialização |
+    | bem_estar_psicologico         |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes|  Como o aluno classifica seu bem-estar psicológico em geral, incluindo sentimentos de ansiedade e/ou depressão |
+    | qualidade_de_vida             |      texto       | texto livre (até 250 palavras) | Variedade e diversidade de experiências com relação qualidade de vida do aluno |
+    | aulas_durante_pandemia        |      texto       | Pioraram, Foram mais ou menos o mesmo, Melhoraram, N/A ou Não sabe | Opinião sobre a forma como as aulas foram ministradas durante a pandemia |
+    | acesso_professores            |      texto       | Piorou, Foi mais ou menos o mesmo, Melhorou, N/A ou Não sabe | Opinião sobre formas de acesso aos seus professores durante a pandemia |
+    | acesso_infra_ies              |      texto       | Pioraram, Foram mais ou menos o mesmo, Melhorou, N/A ou Não sabe | Opinião sobre formas de acesso aos recursos de infraestrutura oferecidos pela IES |
+    | espaco_físico                 |      texto       | Piorou, Era mais ou menos o mesmo, Melhorou, N/A ou Não sabe | Opinião sobre formas de acesso aos recursos de infraestrutura oferecidos pela IES |
+    | disposicao_atividades         |      texto       | Diminuiu, Ficou mais ou menos a mesma, Aumentou, N/A ou Não sabe | Opinião sobre disposição para participar das aulas/atividades, estudar e aprender|
+    | desempenho_escolar            |      texto       | Diminuiu, Ficou mais ou menos a mesma, Aumentou, N/A ou Não sabe | Opinião sobre desempenho escolar durante a pandemia|
+    | ies_reinicio                  |      texto       | Sim (retornou todas as atividades presenciais), Não, ainda não retornou nenhuma atividade presencial, Em parte (apenas algumas atividades presenciais retornaram), N/A ou Não sabe | A IES reiniciou atividades presenciais no campus e/ou faculdade|
+    | data_reinicio                 |      data         | dd/mm/aaaa                         | Dia, mês e ano em que a IES retornou atividades|
+    | vacinado                      |      texto        | Sim, com uma dose, Sim vacinado com duas doses ou com vacina de dose única, Sim, vacinado com duas doses ou com vacina de dose única e dose(s) de reforço, Não fui vacinado ainda com nenhuma dose, N/A ou Não quero responder | Aluno vacinado contra a COVID-19 |
+    | dificuldades_academicas       |      texto       | texto livre (até 250 palavras) | Variedade e diversidade de experiências com relação às dificuldades acadêmicas do aluno na pandemia |
+    | despesas                      |      texto       | Diminuiram, Ficou mais ou menos os mesmos, Aumentaram, N/A ou Não quero responder | Gastos/despesas do aluno durante a pandemia|
+    | renda_Financeira              |      texto       | Diminuiu, Está mais ou menos a mesma, Aumentou, N/A ou Não sabe  | Alteração na renda financeira do aluno durante a pandemia|
+    | ajuda_Financeira              |      texto       | Sim, Não, NA / Não sei                                           | Recebeu ajuda financeira da IES ou outra organização durante a pandemia|
+    | nivel_endividamento           |      texto       | Diminuiram, Estão mais ou menos as mesmas, Aumentaram, N/A ou Não sabe  | Dívidas (nível de endividamento) do aluno durante a pandemia|
+    | despesas_cresceram            |      texto       | Relacionadas com saúde, Viagens/deslocamentos, Transporte urbano, Aluguel, Internet, Alimentação, Outras (não relacionadas) | Dívidas (nível de endividamento) do aluno durante a pandemia|
+    | dificuldades_financeiras       |      texto       | texto livre (até 250 palavras) | Variedade e diversidade de experiências com relação às dificuldades financeiras do aluno na pandemia |
+    | decisao_fechar                 |      texto       | Muito rapidamente, De forma oportuna e prudente, Muito lentamente, N/A ou Não sabe | Opinião sobre decisão da IES em fechar o campus e utilizar ferramentas online para as aulas|
+    | ies_positivo                   |      texto       | texto livre (até 250 palavras) | Opinião sobre o que a IES fez de positivo em resposta à pandemia|
+    | ies_melhorar                   |      texto       | texto livre (até 250 palavras) | Opinião sobre o que a IES poderia ter melhorado em resposta à pandemia|
+    | ies_ajudar                     |      texto       | texto livre (até 250 palavras) | Opinião sobre comoa IES poderia ter ajudado mais em resposta à pandemia|
+    | nivel_ansiedade                |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes | Nível de ansiedade do aluno na pandemia|
+    | ansiedade_planejamento         |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes | Ansiedade do aluno para planejamento pessoal |
+    | ansiedade_longo_prazo          |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes | Ansiedade do aluno para planejamento de longo prazo |
+    | detalhes_finais                |      texto       | texto livre (até 250 palavras) | Relatar de forma detalhada e livre como vivenciou a COVID-19|
+
+Fonte: Elaborado pelo autor (2023).
+
+Um glossário ou dicionário de dados, de acordo com Askham (2022), é
+utilizado para armazenar um conjunto limitado de metadados[\^5]
+concentrados nos nomes e definições relacionadas aos dados físicos e
+objetos relacionados.
+
+Os dados deste trabalho foram originalmente digitados em um questionário
+de coleta de dados online no aplicativo de gerenciamento de pesquisas
+Google Forms®. Após a digitação os \*\*dados brutos\*\* (raw data) foram
+compilados em um \*workbook\* utilizando o aplicativo de computador
+(software) Excel® da Microsoft®. Uma amostra do conteúdo das planilhas
+de trabalho em OpenDocument (.ods) com os dados brutos, ou \*dados não
+numericamente organizados\*.
+
+Tais dados brutos após pequenas transformações realizadas manualmente
+foram depois reproduzidos em arquivos .xlsx (formato Excel®), .ods
+(formato OpenDocument ou OpenDocument Format -- ODF, no original em
+inglês) e .csv (formato de arquivo que significa
+"comma-separated-values" - valores separados por vírgulas). O objetivo
+de utilizar tais formatos de arquivos foi o de possibilitar a importação
+e exportação dos arquivos em formas que diversas linguagens utilizadas
+para análise de dados e/ou aplicativos possam ser utilizados.
+
+### 4.3 Visualização dos dados
+
+```{r numero_de_casos, echo=FALSE}
+# Importacao arquivo CSV
+dataset.csv <-read.csv("./dados/COVID19IES.csv", header = TRUE, sep = ";", quote = "\"", dec = ".")
+total_casos <- nrow(dataset.csv)
+```
+
+Para o perfil dos entrevistados foram analisadas as respostas obtidas
+pelo questionário, no período disponível.
+
+A amostra utilizada neste artigo é composta por **`r total_casos`**
+observações que foram coletadas durante o período de 2020 até 2023.
+
+```{r echo=FALSE}
+# Import packages
+#library(tidyverse)
+#library(ggplot2)
+#library(stringr)
+# library(readxl)
+
+
+# Grafico Dados Pessoais : 1.Idade (Faixa Etária) 
+# Qual a sua idade ? 
+idade <- table(dataset.csv$idade)
+
+# Porcentagem das faixas etárias
+pct_idade <- paste0(round(unname(idade) / sum(unname(idade)) * 100,0), "%")
+
+# Amplitude 
+valor_min = min(dataset.csv$idade)
+valor_max = max(dataset.csv$idade)
+
+df_faixa_etaria <- data.frame(faixa_etaria="", idade=dataset.csv$idade )
+
+for (k in 1:nrow(df_faixa_etaria)) {
+  if(df_faixa_etaria$idade[k] <= 24) df_faixa_etaria$faixa_etaria[k] <- "17 a 24 anos"
+  if(df_faixa_etaria$idade[k] >= 25 & df_faixa_etaria$idade[k] <= 26) df_faixa_etaria$faixa_etaria[k] <- "22 a 26 anos"
+  if(df_faixa_etaria$idade[k] >= 27 & df_faixa_etaria$idade[k] <= 31) df_faixa_etaria$faixa_etaria[k] <- "27 a 31 anos"
+  if(df_faixa_etaria$idade[k] >= 32 & df_faixa_etaria$idade[k] <= 36) df_faixa_etaria$faixa_etaria[k] <- "32 a 36 anos"
+  if(df_faixa_etaria$idade[k] >= 37 & df_faixa_etaria$idade[k] <= 41) df_faixa_etaria$faixa_etaria[k] <- "37 a 41 anos"
+  if(df_faixa_etaria$idade[k] >= 42 & df_faixa_etaria$idade[k] <= 46) df_faixa_etaria$faixa_etaria[k] <- "42 a 46 anos" 
+  if(df_faixa_etaria$idade[k] >= 47 & df_faixa_etaria$idade[k] <= 51) df_faixa_etaria$faixa_etaria[k] <- "47 a 51 anos" 
+  if(df_faixa_etaria$idade[k] >= 52 & df_faixa_etaria$idade[k] <= 56) df_faixa_etaria$faixa_etaria[k] <- "52 a 56 anos"
+  if(df_faixa_etaria$idade[k] >= 57 & df_faixa_etaria$idade[k] <= 61) df_faixa_etaria$faixa_etaria[k] <- "57 a 61 anos"
+  if(df_faixa_etaria$idade[k] > 61) df_faixa_etaria$faixa_etaria[k] <- "acima de 61 anos"
+}
+
+## table idade_concat
+tbl_faixa_etaria <- table(df_faixa_etaria$faixa_etaria)
+
+## Porcentagem por Faixa Etaria
+pct_faixa_etaria <- paste0(round(unname(tbl_faixa_etaria) / sum(unname(tbl_faixa_etaria)) * 100,0), "%")
+
+grafico_faixa_etaria <- barplot(tbl_faixa_etaria, 
+                                main = "Gráfico 1: Idade (Faixa Etária)",
+                                xlab = "Idades", 
+                                ylab = "Respondentes",
+                                col = rainbow(9),
+                                ylim = c(0,max(tbl_faixa_etaria) + 5),
+                                cex.axis=0.7, cex.names=0.5 )
+text(x = grafico_faixa_etaria, y = tbl_faixa_etaria, label = paste(tbl_faixa_etaria, " (", pct_faixa_etaria, ")"), cex=0.70, pos=3)
+```
+
+Como pode ser observado no **Gráfico 1**, A faixa etária com maior
+número de entrevistados, correspondendo a 35%, é a faixa etária de 17 a
+24 anos. As faixas de 22 a 26 anos e 37 a 41 anos obtiveram 13% cada
+uma, 10% dos respondentes estão na faixa de 42 a 46 anos, de 47 a 51
+anos e de 52 a 56 anos tiveram ambas 8%, 6% eram da faixa de 27 a 31
+anos, 6% de 32 a 36 anos, e apenas 2% se enquadraram na faixa etária de
+57 a 61 anos.
+
+```{r echo=FALSE, results='hide'}
+
+# Grafico Dados Pessoais : 1.Situacao_conjugal
+# Qual sua situação conjugal ?
+sit_conjugal <- table(dataset.csv$situacao_conjugal)
+
+
+# Porcentagem 
+pct_sit_conjugal <- paste0(round(unname(sit_conjugal) / sum(unname(sit_conjugal)) * 100,0), "%")
+
+grafico_sit_conjugal <- barplot(sit_conjugal, 
+                                main = "Gráfico 2 : Estado Civil",
+                                xlab = "", 
+                                ylab = "Respondentes",
+                                col = rainbow(5),
+                                ylim = c(0,max(sit_conjugal) + 4),
+                                cex.axis=1.0, cex.names=0.6)
+text(x = grafico_sit_conjugal, y = sit_conjugal, label = paste(sit_conjugal, " (", pct_sit_conjugal, ")"), cex=1, pos=3)
+```
+
+Observando-se o **Gráfico 2**, constata-se que, na amostra utilizada
+nesta análise exploratória, 54% dos respondentes são solteiros(as), 31%
+casados(as), 10% estão em uma união estável, 4% divorciado(a) e 1%
+viúvo(a)
+
+```{r echo=FALSE, results='hide'}
+# Grafico 1.Nivel Ensino 
+# Qual nível de ensino você está cursando ? 
+tbl_nivel_ensino <- table(dataset.csv$nivel_ensino)
+
+pct_nivel_ensino <- paste(round(unname(tbl_nivel_ensino) / sum(unname(tbl_nivel_ensino)) * 100), "%")
+
+grafico_nivel_ensino <- pie(tbl_nivel_ensino,
+                        edges = 200, radius = 0.8,
+                        clockwise = T,
+                        cex = 0.8,
+                        density = NULL, angle = 90, col = rainbow(6),
+                        labels = paste(names(tbl_nivel_ensino), "-", tbl_nivel_ensino, "(", pct_nivel_ensino, ")"),
+                        main = "Gráfico 3: Nível de Ensino ")
+```
+
+Ainda caracterizando o perfil dos entrevistados no **Gráfico 3**, o
+nível de escolaridade predominante é a graduação, com 21 respondentes
+(40%), seguido pelo doutorado com 15 (29%) e mestrado com 13
+respondentes. Enquanto isso, o nível de Pós-doutorado,
+MBA/Especialização e ensino técnico obtiveram 1 entrevistado cada (2%).
+Desses, 45 são de instituição pública, 6 de privada, e 1 de autarquia
+municipal.
+
+```{r echo=FALSE, results='hide'}
+# Grafico Dados Pessoais : 1.Situacao_empregaticia
+# Qual sua situação empregatícia e/ou financeira atual ? 
+
+df_situacao_emp <- data.frame(situacao ="", emp=dataset.csv$situacao_empregaticia)
+
+for (k in 1:nrow(df_situacao_emp)) {
+  if(df_situacao_emp$emp[k] == "Aposentada")       df_situacao_emp$situacao[k]<- "Aposentado"
+  if(df_situacao_emp$emp[k] == "Bolsista")          df_situacao_emp$situacao[k]<- "Bolsista ou Estagiário(a)"
+  if(df_situacao_emp$emp[k] == "Corretor de Imóveis") df_situacao_emp$situacao[k]<- "Empregado(a)"
+  if(df_situacao_emp$emp[k] == "Dependente (dos pais) com vínculo empregatício") df_situacao_emp$situacao[k]<- "Empregado(a)"
+  if(df_situacao_emp$emp[k] == "Dependente (dos pais, etc.)") df_situacao_emp$situacao[k]<- "Dependente dos Pais"
+  if(df_situacao_emp$emp[k] == "Desempregado(a)") df_situacao_emp$situacao[k]<- "Desempregado(a)"
+  if(df_situacao_emp$emp[k] == "Empregado(a)") df_situacao_emp$situacao[k]<- "Empregado(a)"
+  if(df_situacao_emp$emp[k] == "Empresária") df_situacao_emp$situacao[k]<- "Empregado(a)"
+  if(df_situacao_emp$emp[k] == "Estagiário(a)") df_situacao_emp$situacao[k]<- "Bolsista ou Estagiário(a)"
+  if(df_situacao_emp$emp[k] == "Micro-empresário instituído por ME") df_situacao_emp$situacao[k]<- "Empregado(a)"
+  if(df_situacao_emp$emp[k] == "Servidora pública") df_situacao_emp$situacao[k]<- "Empregado(a)"
+  if(df_situacao_emp$emp[k] == "tatuador autônomo, mas conto com ajuda dos pais") df_situacao_emp$situacao[k]<- "Empregado(a)"
+}
+
+sit_emprego <- table(df_situacao_emp$situacao)
+
+# Porcentagem 
+pct_sit_emprego <- paste0(round(unname(sit_emprego) / sum(unname(sit_emprego)) * 100,0), "%")
+
+par(las=1) # nomes dos eixos perpendicular
+par(mar=c(5,10,1,1)+0.1)  # para aumentar a margem a esquerda 
+grafico_sit_empregaticia <- barplot(sit_emprego, 
+                                    main="Grafico 4 : Situação Empregatícia ",
+                                    las=1,  
+                                    beside = TRUE,
+                                    horiz=TRUE, 
+                                    xlim = c(0,max(sit_emprego) + 15),
+                                    col=rainbow(5),
+                                    cex.axis = 0.7,  
+                                    cex.names = 0.8)
+
+text(grafico_sit_empregaticia, x = sit_emprego, label = paste(sit_emprego, "(", pct_sit_emprego, ")"), cex=0.9, pos=4)
+
+par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
+```
+
+Ao analisar as condições financeiras dos participantes no **Gráfico 4**,
+foi possível identificar que, dos 52 respondentes, 30 estavam
+empregados, em diversos segmentos, 10 eram bolsistas e 2 estagiários , 7
+eram dependentes e contavam com ajuda dos pais , 2 estavam
+desempregados, e 1 aposentado. Sendo assim, dos 52 respondentes, 15%
+tiveram alguma ajuda financeira de sua instituição educacional ou de
+outra organização durante a pandemia, e 85% não obteve ajuda.
+
+```{r echo=FALSE, results='hide'}
+
+# Grafico 1. Vacinado
+# Você já foi vacinado contra a COVID-19 ?
+vacinado <- table(dataset.csv$vacinado, exclude = "")
+
+names(vacinado) <- c("Sim,2 doses ou dose unica", 
+                     "Sim,2 doses,dose única e reforço", 
+                     "Sim,2 doses ou dose unica e reforço")
+
+pct_vacinado <- paste(round(unname(vacinado) / sum(unname(vacinado)) * 100), "%")
+
+grafico_vacinado <- pie(vacinado,
+                                  edges = 200, radius = 0.8,
+                                  clockwise = T,
+                                  density = NULL, angle = 90, col = rainbow(5),
+                                  labels = paste(names(vacinado), " ", vacinado, "(", pct_vacinado, ")"),
+                                  main = "Grafico 5 : Vacina COVID19",
+                                  cex = 0.7)
+```
+
+Quanto à vacinação, apresentada no **Gráfico 5**, não houve nenhum
+participante não vacinado contra a COVID-19. Em sua maioria, foram
+tomadas as duas doses, ou dose única, e reforço. Outro fator importante
+a ser levado em consideração, devido a pandemia, é a questão de
+locomoção - impedidas pelas restrições e lockdown - e o fato de que a
+maior parte dos respondentes não eram residentes da cidade em que
+estudavam, sendo apenas 18 entrevistados locais e 34 de outras cidades.
+Destes, 90% estavam na sua residência permanente durante a pandemia e
+10% não.
+
+```{r echo=FALSE, results='hide'}
+
+# Grafico Dados Pessoais 1. Respondentes morando com 
+# Atualmente, você está morando ou residindo com/em: 
+morando_com <- table(dataset.csv$morando_com)
+
+pct_morando_com <- paste(round(unname(morando_com) / sum(unname(morando_com)) * 100), "%")
+
+
+grafico_morando_com <- pie(morando_com,
+                                  edges = 200, radius = 0.8,
+                                  clockwise = T,
+                                  density = NULL, angle = 90, col = rainbow(3),
+                                  labels = paste(names(morando_com), "  ", morando_com, "(", pct_morando_com, ")"),
+                                  cex = 0.9,
+                                  main = "Grafico 6: Morando ou residindo com/em ")
+```
+
+Em relação ao **Gráfico 6**, do total de respondentes, 69% moravam com a
+família, seguido de sozinho (25%), e em último ficaram os que residiam
+em república ou com colega de quarto (6%).
+
+```{r echo=FALSE, results='hide'}
+# Grafico Dados Instituicao de Ensino 2.decisao_fechar (utilizacao de ferramenta online)
+# Com relação à decisão de fechar o campus e de utilizar ferramentas online para as aulas, por conta da pandemia da COVID-19, você sentiu que as decisões na sua instituição foram tomadas: *
+ies_decisao_fechar <- table(dataset.csv$decisao_fechar, exclude = "")
+
+pct_ies_decisao_fechar <- paste(round(unname(ies_decisao_fechar) / sum(unname(ies_decisao_fechar)) * 100), "%")
+
+grafico_ies_decisao_fechar <- pie(ies_decisao_fechar,
+                            edges = 200, radius = 0.8,
+                            clockwise = T,
+                            density = NULL, angle = 90, col = rainbow(3),
+                            labels = paste(names(ies_decisao_fechar), " ", ies_decisao_fechar, "(", pct_ies_decisao_fechar, ")"),
+                            main = "Grafico 7: Decisao de fechar o campus e de utilizar ferramentas online ",
+                            cex = 0.7)
+
+```
+
+De acordo com os entrevistados, conforme mostra o **Gráfico 7**, eles
+entenderam que as universidades fecharam e tomaram a decisão de utilizar
+ferramentas online de forma oportuna e prudente (77%), muito rapidamente
+10%, e lentamente, apenas 13%. Com relação à decisão de fechar o campus
+e de utilizar ferramentas online para as aulas, os respondentes
+afirmaram que as decisões na sua instituição foram tomadas, em sua
+maioria, de forma prudente e oportuna (77%). Sendo que apenas 2%
+informaram que a universidade não migrou para as aulas virtuais durante
+a pandemia.
+
+```{r echo=FALSE, results='hide'}
+# Grafico 3. Pandemia_acesso_internet
+# Como você compara o seu acesso à Internet antes e durante a pandemia da COVID-19 ? *
+
+# Tratamento opcoes
+df_internet <- data.frame(internet="", nivel =dataset.csv$acesso_internet)
+
+for (k in 1:nrow(df_internet)) {
+  if(df_internet$nivel[k] == "Melhor do que antes")            df_internet$internet[k] <- "Melhorou"
+  if(df_internet$nivel[k] == "Muito melhor do que antes")      df_internet$internet[k] <- "Melhorou"
+  if(df_internet$nivel[k] == "Muito pior que antes")        df_internet$internet[k] <- "Piorou"
+  if(df_internet$nivel[k] == "O mesmo que antes")               df_internet$internet[k] <- "Não Mudou"
+  if(df_internet$nivel[k] == "Pior que antes")              df_internet$internet[k] <- "Piorou"
+  if(df_internet$nivel[k] == "N/A ou Não sabe")              df_internet$internet[k] <- "Não Sabe"
+}  
+
+acesso_internet <- table(df_internet$internet, exclude = "")
+
+pct_acesso_internet <- paste(round(unname(acesso_internet) / sum(unname(acesso_internet)) * 100), "%")
+
+grafico_acesso_internet <- pie(acesso_internet,
+                                     edges = 200, radius = 0.8,
+                                     clockwise = T,
+                                     density = NULL, angle = 90, col = rainbow(4),
+                                     labels = paste(names(acesso_internet), " ", acesso_internet, "(", pct_acesso_internet, ")"),
+                                     main = "Grafico 8: Acesso à Internet antes e durante a pandemia ",
+                                      cex = 0.8)
+```
+
+Partindo da necessidade em utilizar a internet para as aulas, como pode
+se observar no **Gráfico 8**, foi questionado quanto a alteração na
+acessibilidade à Internet, antes e durante a pandemia da Covid-19, de
+acordo com 65% não houve nenhuma mudança, para 13% piorou, Numa outra
+visão, 19% sentiram uma melhora . Apenas 2% não souberam responder.
+
+```{r echo=FALSE, results='hide'}
+# Grafico 3. Pandemia acesso professores
+# Durante a pandemia da COVID-19, você sentiu que as formas de acesso aos seus professores: *
+
+# Tratamento opcoes
+df_professores <- data.frame(professores="", nivel =dataset.csv$acesso_professores)
+
+for (k in 1:nrow(df_professores)) {
+  if(df_professores$nivel[k] == "Melhorou")                     df_professores$professores[k] <- "Melhorou"
+  if(df_professores$nivel[k] == "Piorou")                       df_professores$professores[k] <- "Piorou"
+  if(df_professores$nivel[k] == "Está mais ou menos o mesmo")      df_professores$professores[k] <- "Não Mudou"
+  if(df_professores$nivel[k] == "Foi mais ou menos o mesmo")    df_professores$professores[k] <- "Não Mudou"
+  if(df_professores$nivel[k] == "N/A ou Não sabe")              df_professores$professores[k] <- "Não Sabe"
+}  
+
+acesso_professores <- table(df_professores$professores, exclude = "")
+
+pct_acesso_professores <- paste(round(unname(acesso_professores) / sum(unname(acesso_professores)) * 100), "%")
+
+grafico_acesso_professores <- pie(acesso_professores,
+                     edges = 200, radius = 0.8,
+                     clockwise = T,
+                     density = NULL, angle = 90, col = rainbow(4),
+                     labels = paste(names(acesso_professores), " ", acesso_professores, "(", pct_acesso_professores, ")"),
+                     main = "Grafico 9 : Acesso aos Professores durante a pandemia ",
+                     cex.main=1, cex = 0.8)
+
+
+```
+
+No **Gráfico 9**, ao abordarmos sobre o corpo docente das universidades,
+a maioria dos respondentes sentiu que o acesso aos professores piorou
+(52%), seguido dos que acharam que foi mais ou menos o mesmo (25%) e
+para uma parcela menor (15%) melhorou, 8% não souberam responder.
+
+```{r echo=FALSE, results='hide'}
+# Grafico Dados Instituicao de Ensino 2. Instituicao_acesso_infra
+# Com relação às formas de acesso aos recursos de infraestrutura oferecidos pela sua instituição (biblioteca, coordenação, orientação de assuntos acadêmicos, matrícula, etc.) durante a pandemia do COVID-19 você sentiu que: *
+
+# Tratamento opcoes
+df_infra <- data.frame(infra="", nivel =dataset.csv$acesso_infra_ies)
+
+for (k in 1:nrow(df_infra)) {
+  if(df_infra$nivel[k] == "Melhorou")            df_infra$infra[k] <- "Melhoraram"
+  if(df_infra$nivel[k] == "Pioraram")            df_infra$infra[k] <- "Pioraram"
+  if(df_infra$nivel[k] == "Piorou")              df_infra$infra[k] <- "Pioraram"
+  if(df_infra$nivel[k] == "N/A ou Não sabe")     df_infra$infra[k] <- "Não Sabe"
+  if(df_infra$nivel[k] == "Ficou mais ou menos o mesmo")  df_infra$infra[k] <- "Não Mudaram"
+}  
+
+
+ies_infra <- table(df_infra$infra, exclude = "")
+
+
+pct_ies_infra <- paste(round(unname(ies_infra) / sum(unname(ies_infra)) * 100), "%")
+
+grafico_ies_infra <- pie(ies_infra,
+                               edges = 200, radius = 0.8,
+                               clockwise = T,
+                               density = NULL, angle = 90, col = rainbow(4),
+                               labels = paste(names(ies_infra), " ", ies_infra, "(", pct_ies_infra, ")"),
+                               main = "Gráfico 10: Acesso aos recursos de infraestrutura oferecidos pela sua instituição ",
+                                cex.main =1, cex = 0.8)
+
+
+```
+
+No **Gráfico 10**, com relação às formas de acesso aos recursos de
+infraestrutura oferecidos pela sua instituição (biblioteca, coordenação,
+orientação de assuntos acadêmicos, matrícula, etc.), durante a pandemia
+do COVID-19 para 33% dos entrevistados não mudou, 40% sentiram que
+piorou, para 13% melhorou e 13% não souberam dizer.
+
+```{r echo=FALSE, results='hide'}
+# Grafico Dados Instituicao de Ensino 2. Instituicao_reinicio
+# A sua instituição já reiniciou todas as atividades presenciais no seu campus e/ou faculdade?
+ies_reinicio <- table(dataset.csv$ies_reinicio, exclude = "")
+
+# Reduçao nome dos cursos
+names(ies_reinicio) <- c("Em parte", "Não Sabe", "Não Reiniciou Presencial", "Sim Reiniciou Presencial")
+
+pct_ies_reinicio <- paste(round(unname(ies_reinicio) / sum(unname(ies_reinicio)) * 100), "%")
+
+grafico_ies_reinicio <- pie(ies_reinicio,
+                         edges = 200, radius = 0.8,
+                         clockwise = T,
+                         density = NULL, angle = 90, col = rainbow(5),
+                         labels = paste(names(ies_reinicio), " ", ies_reinicio, "(", pct_ies_reinicio, ")"),
+                         main = "Gráfico 11: Reinício das atividades presenciais ", cex.main = 1 , cex = 0.8)
+```
+
+Após a vacinação e controle da pandemia, pode se observar no **Gráfico
+11** que, 56% dos entrevistados afirmaram que as universidades já
+retomaram as atividades de forma presencial no campus, 27% em parte, 8%
+não retomaram e 10% não sabiam informar.
+
+```{r echo=FALSE, results='hide'}
+# Grafico 4. Financas despesas
+# Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ? *v
+# Tratamento das Opcoes
+df_despesas <- data.frame(despesas="", nivel =dataset.csv$despesas )
+
+for (k in 1:nrow(df_despesas)) {
+  if(df_despesas$nivel[k] == "Aumentaram")       df_despesas$despesas[k] <- "Aumentaram"
+  if(df_despesas$nivel[k] == "Diminuiram")       df_despesas$despesas[k] <- "Diminuiram"
+  if(df_despesas$nivel[k] == "Foram mais ou menos os mesmos")   df_despesas$despesas[k] <- "Não Mudaram"
+  if(df_despesas$nivel[k] == "São mais ou menos os mesmos")           df_despesas$despesas[k] <- "Não Mudaram"
+  
+}
+
+despesas <- table(df_despesas$despesas, exclude = "")
+
+pct_despesas <- paste(round(unname(despesas) / sum(unname(despesas)) * 100), "%")
+
+grafico_despesas <- pie(despesas,
+                                  edges = 200, radius = 0.8,
+                                  clockwise = T,
+                                  density = NULL, angle = 90, col = rainbow(5),
+                                  labels = paste(names(despesas), " ", despesas, "(", pct_despesas, ")"),
+                                  main = "Grafico 12: Mudança nos gastos/despesas durante pandemia",
+                                  cex.main=1, cex = 0.8)
+
+```
+
+Com as restrições sociais introduzidas durante o período de isolamento
+social, é importante entender como a vida financeira foi afetada. Sendo
+assim, em relação aos gastos durante o período da pandemia, assim como
+mostra no **Gráfico 12**, 40% alegam que as despesas não sofreram
+alteração. 33% teve um aumento e 27% tiveram uma redução.
+
+```{r echo=FALSE, results='hide'}
+# Grafico 4. Financas renda_financeira
+# Durante a pandemia da COVID-19 houve alguma alteração com relação à sua renda financeira? *
+renda_financeira <- table(dataset.csv$renda_financeira, exclude = "")
+
+pct_renda_financeira <- paste(round(unname(renda_financeira) / sum(unname(renda_financeira)) * 100), "%")
+
+#  "6 %"  "48 %" "44 %" "2 %" 
+
+grafico_renda_financeira <- pie(renda_financeira,
+                        edges = 200, radius = 0.8,
+                        clockwise = T,
+                        density = NULL, angle = 90, col = rainbow(4),
+                        labels = paste(names(renda_financeira), " ", renda_financeira, "(", pct_renda_financeira, ")"),
+                        main = "Grafico 13 : Alteraçao financeira/renda durante pandemia", cex = 0.7)
+
+```
+
+Apesar da maioria dos entrevistados não terem sofrido com o aumento de
+despesas, no **Gráfico 13**, 44% alega que sua renda financeira
+continuou mais ou menos a mesma coisa. 48% observaram uma queda no poder
+de compra, 6% tiveram um aumento e 2% não quiseram e/ou puderam opinar.
+
+Dentre os gastos citados pelos respondentes pós pandemia, o maior foi
+alimentação (25%), seguido pelo transporte urbano e deslocamento.
+Levando em consideração que, em sua maioria, os entrevistados tiveram
+que retomar pelo menos parcialmente ou híbrida para seu trabalho e
+faculdade, justifica ser um dos itens mais marcados.
+
+```{r echo=FALSE, results='hide'}
+# Grafico 2. Instituicao ajuda_financeira
+# Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19? *
+ajuda_financeira <- table(dataset.csv$ajuda_financeira, exclude = "")
+
+pct_ajuda_financeira <- paste(round(unname(ajuda_financeira) / sum(unname(ajuda_financeira)) * 100), "%")
+
+grafico_ajuda_financeira <- pie(ajuda_financeira,
+                                edges = 200, radius = 0.8,
+                                clockwise = T,
+                                density = NULL, angle = 90, col = rainbow(2),
+                                labels = paste(names(ajuda_financeira), " ", ajuda_financeira, "(", pct_ajuda_financeira, ")"),
+                                main = "Grafico 14 : Ajuda financeira da Instituição Educacional durante a pandemia",cex.main = 0.9, cex = 1)
+
+```
+
+Ainda que muitas universidades públicas ofereçam auxílio financeiro para
+que estudantes possam morar no campus (ou próximo de) para estudarem,
+durante o período de pandemia, constata-se no **Gráfico 14**, que 85%
+dos entrevistados não tiveram nenhum respaldo por parte da instituição.
+
+```{r echo=FALSE, results='hide'}
+
+# Grafico Dados Instituicao de Ensino  2. Migrou Virtual
+# Sua instituição migrou para as aulas virtuais durante a pandemia da COVID-19? 
+migrou_virtual <- table(dataset.csv$migrou_virtual)
+
+pct_migrou_virtual <- paste(round(unname(migrou_virtual) / sum(unname(migrou_virtual)) * 100), "%")
+
+grafico_migrou_virtual <- pie(migrou_virtual,
+                           edges = 200, radius = 0.8,
+                           clockwise = T,
+                           density = NULL, angle = 90, col = rainbow(2),
+                           labels = paste(names(migrou_virtual), "", migrou_virtual,"(", pct_migrou_virtual, ")"),
+                           main = "Grafico 15: Instituiçao Educacional migrou para aulas virtuais durante a pandemia", cex.main =1, cex = 1)
+```
+
+De acordo com o **Gráfico 15**, 98% dos entrevistados migraram para o
+ensino remoto.
+
+```{r echo=FALSE, results='hide'}
+# Grafico 3. Pandemia desempenho_escolar
+# Você percebeu que o seu desempenho escolar durante a pandemia do COVID-19 (suas notas, aproveitamento escolar, etc.):
+
+# Tratamento das Opcoes
+df_desempenho_escolar <- data.frame(desempenho_escolar="", nivel =dataset.csv$desempenho_escolar )
+
+for (k in 1:nrow(df_desempenho_escolar)) {
+  if(df_desempenho_escolar$nivel[k] == "Aumentou")                     df_desempenho_escolar$desempenho_escolar[k] <- "Aumentou"
+  if(df_desempenho_escolar$nivel[k] == "Diminuiu")                     df_desempenho_escolar$desempenho_escolar[k] <- "Diminuiu"
+  if(df_desempenho_escolar$nivel[k] == "Está mais ou menos o mesmo")   df_desempenho_escolar$desempenho_escolar[k] <- "Não Mudou"
+  if(df_desempenho_escolar$nivel[k] == "Foi mais ou menos o mesmo")    df_desempenho_escolar$desempenho_escolar[k] <- "Não Mudou"
+  if(df_desempenho_escolar$nivel[k] == "N/A ou Não sabe")              df_desempenho_escolar$desempenho_escolar[k] <- "Não Sabe"
+  
+}
+
+
+desempenho_escolar <- table(df_desempenho_escolar$desempenho_escolar, exclude = "")
+
+pct_desempenho_escolar <- paste(round(unname(desempenho_escolar) / sum(unname(desempenho_escolar)) * 100), "%")
+
+grafico_desempenho_escolar <- pie(desempenho_escolar,
+                                     edges = 200, radius = 0.8,
+                                     clockwise = T,
+                                     density = NULL, angle = 90, col = rainbow(5),
+                                     labels = paste(names(desempenho_escolar), " ", desempenho_escolar, "(", pct_desempenho_escolar, ")"),
+                                     main = "Grafico 16 : Desempenho Escolar durante a pandemia",
+                                     cex.main=1, cex = 0.9)
+```
+
+Com a migração para o ensino virtual remoto e a mudança na forma de
+aprendizado, 38% dos respondentes no **Gráfico 16** considera que seu
+desempenho continuou o mesmo se comparado ao presencial. 31% teve seu
+rendimento comprometido, 27% continuaram com a mesma performance e 2%
+não souberam opinar.
+
+```{r echo=FALSE, results='hide'}
+# Grafico 3. Pandemia_acesso_internet
+# Como você compara o seu acesso à Internet antes e durante a pandemia da COVID-19 ? *
+
+# Tratamento opcoes
+df_internet <- data.frame(internet="", nivel =dataset.csv$acesso_internet)
+
+for (k in 1:nrow(df_internet)) {
+  if(df_internet$nivel[k] == "Melhor do que antes")            df_internet$internet[k] <- "Melhorou"
+  if(df_internet$nivel[k] == "Muito melhor do que antes")      df_internet$internet[k] <- "Melhorou"
+  if(df_internet$nivel[k] == "Muito pior que antes")        df_internet$internet[k] <- "Piorou"
+  if(df_internet$nivel[k] == "O mesmo que antes")               df_internet$internet[k] <- "Não Mudou"
+  if(df_internet$nivel[k] == "Pior que antes")              df_internet$internet[k] <- "Piorou"
+  if(df_internet$nivel[k] == "N/A ou Não sabe")              df_internet$internet[k] <- "Não Sabe"
+}  
+
+acesso_internet <- table(df_internet$internet, exclude = "")
+
+pct_acesso_internet <- paste(round(unname(acesso_internet) / sum(unname(acesso_internet)) * 100), "%")
+
+grafico_acesso_internet <- pie(acesso_internet,
+                                     edges = 200, radius = 0.8,
+                                     clockwise = T,
+                                     density = NULL, angle = 90, col = rainbow(4),
+                                     labels = paste(names(acesso_internet), " ", acesso_internet, "(", pct_acesso_internet, ")"),
+                                     main = "Grafico 17 : Acesso à Internet antes e durante a pandemia ", cex = 0.8)
+```
+
+De modo geral, o **Gráfico 17** mostra que o acesso a internet não mudou
+para 65% dos estudantes, porém, houve melhora para 19%, piora para 13% e
+2% não souberam opinar.
+
+```{r echo=FALSE, results='hide'}
+# Grafico 3. Pandemia capacidade_prosseguir_estudos
+# Em relação a antes e durante a pandemia da COVID-19, como você classifica sua capacidade em prosseguir seus estudos, 
+# incluindo sua graduação e/ou conclusão de curso?
+
+# Tratamento opcoes
+df_estudos <- data.frame(estudos="", nivel =dataset.csv$capacidade_socializacao)
+
+for (k in 1:nrow(df_estudos)) {
+  if(df_estudos$nivel[k] == "Melhor do que antes")            df_estudos$estudos[k] <- "Melhorou"
+  if(df_estudos$nivel[k] == "Muito melhor do que antes")      df_estudos$estudos[k] <- "Melhorou"
+  if(df_estudos$nivel[k] == "Muito pior do que antes")        df_estudos$estudos[k] <- "Piorou"
+  if(df_estudos$nivel[k] == "O mesmo de antes")               df_estudos$estudos[k] <- "Não Mudou"
+  if(df_estudos$nivel[k] == "Pior do que antes")              df_estudos$estudos[k] <- "Piorou"
+  if(df_estudos$nivel[k] == "N/A ou Não Sabe")              df_estudos$estudos[k] <- "Não Sabe"
+}  
+
+capacidade_prosseguir_estudos<- table(df_estudos$estudos, exclude = "")
+
+pct_capacidade_prosseguir_estudos <- paste(round(unname(capacidade_prosseguir_estudos) / sum(unname(capacidade_prosseguir_estudos)) * 100), "%")
+
+grafico_capacidade_prosseguir_estudos <- pie(capacidade_prosseguir_estudos,
+                               edges = 200, radius = 0.8,
+                               clockwise = T,
+                               density = NULL, angle = 90, col = rainbow(3),
+                               labels = paste(names(capacidade_prosseguir_estudos), " ", capacidade_prosseguir_estudos, "(", pct_capacidade_prosseguir_estudos, ")"),
+                               main = "Grafico 18 : Capacidade em prosseguir os estudos antes e durante a pandemia ", cex.main=1, cex = 0.9)
+
+```
+
+Por fim, o **Gráfico 18** mostra que o acesso a toda a estrutura para
+dar prosseguimento aos estudos piorou na opinião de 58% dos estudantes,
+nada mudou na opiniao de 37% dos estudantes e 6% alegam que houve
+melhorias.
+
+## 5. Resultados e Discussão
+
+Após a análise dos dados oriundos do questionário, foi observado que as
+respostas recebidas não estão totalmente distantes da realidade
+brasileira após período crítico de pandemia. Porém, deve-se ressaltar
+alguns tópicos que chamam a atenção por revelarem informações sobre
+dificuldades que, até então, pareciam representar uma parcela distante
+da população comparada à bolha social de cada indivíduo.
+
+Como primeiro exemplo, deve-se citar os 2% universitários que não
+migraram para o ensino virtual. Esse valor ainda foi superior que o
+identificado em escolas públicas e particulares, segundo pesquisa
+divulgada pela Agência Senado:
+
+> No ensino privado, 70,9% das escolas ficaram fechadas no ano passado.
+> O número é consideravelmente menor que o da rede pública: 98,4% das
+> escolas federais, 97,5% das municipais e 85,9% das estaduais. (Agência
+> Senado)
+
+Contudo, de acordo com o Presidente da Comissão de Educação da Alerj
+durante a pandemia, Flavio Serafini (Psol), a rede estadual não
+conseguia apresentar (na época) uma solução que garantisse o direito ao
+ensino durante a pandemia.
+
+> Mais de um terço dos alunos sequer acessou o aplicativo do estado, e a
+> média de uso diário é inferior a 10% do total de estudantes na maioria
+> dos dias. Isso mostra que o que foi desenvolvido até agora é muito
+> limitado. Faltou uma política de inclusão digital mais estruturante."
+> (EXTRA, 2021)
+
+Isso fez com que a qualidade da aprendizagem caísse e o déficit
+educacional aumentasse, agravando ainda mais a desigualdade.
+
+A crise financeira iniciada em 2014 foi causada por um conjunto de
+choques de oferta e demanda, obrigando gestores públicos a adotarem
+instrumentos políticos para atenuar seus efeitos (Mariano, 2016), porém
+a tão temida crise da pandemia não teve quaisquer indícios ou sinais
+semelhantes ao anterior. De acordo com o relatório do Banco Mundial, a
+recessão decorrente da pandemia atingiu seu ápice, em número de países
+atingidos, nos últimos 120 anos (PODER 360, 2022).
+
+> "O Brasil desembolsou 15% do PIC (...) para conter os efeitos da covid
+> no 1 ano de pandemia. (...) O endividamento dos países tende a se
+> agravar, disse Ramalho, por outra consequência global da pandemia: a
+> alta da inflação." (PODER 360, 2022)
+
+De acordo com a fonte, o Banco Mundial ainda estima que 76 milhões de
+pessoas entraram em 2020 para a extrema pobreza. O crescimento da
+desigualdade não foi causado apenas por conta da pandemia, contudo os
+mais vulneráveis ficaram excluídos até de medidas como o Auxílio
+Emergencial, já que muitos não têm acesso à internet. Segundo o IBGE, em
+2021, 92,3% dos domicílios urbanos brasileiros têm acesso à Internet
+(PNAD, 2022). Entretanto, a desigualdade também se apresenta nesses
+casos, já que 100% dos lares da classe A têm ao menos um computador, e
+apenas 13% dos de classe D e E.
+
+Paralelamente, é importante destacar que boa parte dos entrevistados
+sofreram consequências mais brandas no âmbito educacional. Apesar de
+enfrentarem as mesmas dificuldades, como por exemplo, a falta de acesso
+à estrutura universitária em determinadas situações, de modo geral
+pode-se concluir que não sofreram impactos grandiosos que resultam no
+rompimento das atividades acadêmicas ou sua conclusão.
+
+## 6. Conclusão
+
+Diante dos resultados apresentados, conclui-se que a maior parte dos
+estudantes universitários desta pesquisa conseguiu passar pelo período
+problemático da pandemia sem grandes mudanças na sua vida acadêmica.
+
+As universidades em que estão matriculados migraram para o ensino remoto
+e adaptando-se às necessidades para atender os docentes, inclusive no
+quesito infraestrutura, mesmo boa parte relatando algumas dificuldades
+em acessá-la sem grandes problemas.
+
+No quesito financeiro, ao contrário das expectativas de refletir o
+cenário nacional, os resultados mostraram que boa parte não sofreu
+grandes impactos e puderam continuar com sua rotina sem alardes. Um
+ponto interessante a ser citado uma vez que, mesmo possuindo fonte de
+renda, alguns receberam auxílio para complementar.
+
+Quanto ao desempenho durante o período de ensino remoto, ainda que
+alguns sentiram maiores dificuldades e até mesmo uma queda em sua
+performance, conta-se um desempenho positivo entre a maioria que manteve
+a mesma produtividade.
+
+Uma das principais limitações deste estudo é o fato de a amostra engloba
+basicamente estudantes de uma única universidade pública no Brasil, ou
+seja, os resultados podem não ser representativos de toda a população
+universitária em nível nacional ou até mesmo regional. No entanto, a
+taxa está dentro da faixa esperada de respostas, pelos autores, usando
+pesquisas on-line com estudantes universitários.
+
+Considerando que não usamos uma amostragem aleatória e que a prevalência
+de problemas financeiros, logísticos de isolamento, de desempenho
+estudantil, e satisfação quanto às medidas adotadas pelas universidades,
+podem variar de acordo com o momento em que a avaliação foi feita, e
+concepção pessoal. Por conta das diferenças populacionais, e
+instrumentos usados, comparações entre outros levantamentos e pesquisas
+devem ser feitas com cautela.
+
+## Referências Bibliográficas
+
+BUTANTAN. **Por que acontecem mutações do SARS-CoV-2 e quais as
+diferenças entre cada uma das variantes.** 2021 . Disponível em:
+<https://butantan.gov.br/noticias/por-que-acontecem-mutacoes-do-sars-cov-2-e-quais-as-diferencas-entre-cada-uma-das-variantes>
+
+Briceño-León, R. (2003). **Quatro modelos de integração de técnicas
+qualitativas e quantitativas de investigação nas ciências sociais.** O
+Clássico e o novo--tendências, objetos e abordagens em ciências sociais
+e saúde, 157-186. Disponível em:
+<https://books.scielo.org/id/d5t55/pdf/goldenberg-9788575412510.pdf#page=157>
+
+Campos, Mônica Rodrigues et al. **Carga de doença da COVID-19 e de suas
+complicações agudas e crônicas: reflexões sobre a mensuração (DALY) e
+perspectivas no Sistema Único de Saúde.** Cadernos de Saúde Pública
+[online]. v. 36, n. 11 [Acessado 23 Janeiro 2023] , e00148920.
+Disponível em: <https://doi.org/10.1590/0102-311X00148920>. ISSN
+1678-4464. <https://doi.org/10.1590/0102-311X00148920>.
+
+CEPAL. **Pandemia provoca aumento nos níveis de pobreza sem precedentes
+nas últimas décadas e tem um forte impacto na desigualdade e no
+emprego.** 2021. Disponível em:
+<https://www.cepal.org/pt-br/comunicados/pandemia-provoca-aumento-niveis-pobreza-sem-precedentes-ultimas-decadas-tem-forte>
+
+EXTRA. **Migração para as escolas públicas cresce 30% na pandemia, e
+rede privada perde 50 mil alunos.** 2021. Disponível em:
+<https://extra.globo.com/noticias/rio/migracao-para-as-escolas-publicas-cresce-30-na-pandemia-rede-privada-perde-50-mil-alunos-25138212.html>
+
+FIOCRUZ. 2021. **Aula inaugural analisa consequências das decisões
+brasileiras no enfrentamento à pandemia.** Disponível em:
+<https://informe.ensp.fiocruz.br/noticias/51262>
+
+IBGE. PNAD Contínua - **Módulo de Tecnologia de Informação e
+Comunicação** (TIC) 2021. Disponível em:
+<https://www.ibge.gov.br/estatisticas/multidominio/ciencia-tecnologia-e-inovacao/17270-pnad-continua.html?=&t=resultados>
+
+MARIANO, Jefferson, Barcellos, Lívia I. (2017). **Estratégias de gestão
+dos municípios em cenário de crise socioeconômica.** Geografia e
+Pesquisa, 11(2).
+
+O GLOBO. **Por que o negacionismo atrapalha o combate à Covid?.** 2021.
+Disponível em:
+<https://oglobo.globo.com/podcast/por-que-negacionismo-atrapalha-combate-covid-1-24931788>
+
+PODER 360. **Pandemia causou recessão mais ampla que as guerras
+mundiais.** 2022. Disponível em:
+<https://www.poder360.com.br/economia/pandemia-causou-recessao-mais-ampla-que-as-guerras-mundiais/>
+
+UOL. **Covid: 172,6 milhões de brasileiros completam vacinação, 80,3% da
+população.** Disponível em:
+<https://noticias.uol.com.br/saude/ultimas-noticias/redacao/2023/01/11/vacinacao-covid-19-coronavirus-11-de-janeiro.htm?cmpid=copiaecola>.
+Acesso em: 12 de jan. de 2023.
+
+UNA-SUS. **Organização Mundial de Saúde declara pandemia do novo
+Coronavírus.** Disponível em:
+<https://www.unasus.gov.br/noticia/organizacao-mundial-de-saude-declara-pandemia-de-coronavirus>.
+Acesso em: 10 de jan. de 2023.
+
+VEJA. **As lições da pandemia de Covid-19 -- que está chegando ao fim.**
+2021 . Disponível em:
+<https://veja.abril.com.br/saude/os-sinais-de-que-a-pandemia-de-covid-19-vai-acabar-em-breve/>.
+
+##### Pesquisa Reproduzível
+
+<https://www.faac.unesp.br/#!/pos-graduacao/>
